@@ -1,0 +1,32 @@
+name: halden
+version: "1.0.0"
+config-version: 2
+profile: halden
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+vars:
+  # Reporting "as of" date. run.py passes today's date; override for a frozen demo.
+  as_of_date: "2026-10-21"
+  otif_target: 0.95
+
+models:
+  halden:
+    silver:
+      +schema: silver
+      +materialized: table
+    gold:
+      +schema: gold
+      +materialized: table
+
+seeds:
+  halden:
+    +schema: reference
+
+flags:
+  send_anonymous_usage_stats: false

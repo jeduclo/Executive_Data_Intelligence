@@ -1,0 +1,30 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Pipeline: run once",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe pipeline/run.py",
+      "linux": { "command": "${workspaceFolder}/.venv/bin/python pipeline/run.py" },
+      "osx": { "command": "${workspaceFolder}/.venv/bin/python pipeline/run.py" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Pipeline: live demo (every 15 min)",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe pipeline/run.py --loop 15",
+      "linux": { "command": "${workspaceFolder}/.venv/bin/python pipeline/run.py --loop 15" },
+      "osx": { "command": "${workspaceFolder}/.venv/bin/python pipeline/run.py --loop 15" },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Portal: dev server",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": { "cwd": "${workspaceFolder}/web" },
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+kpi_code,kpi_name,question,definition,target,direction,unit,owner
+revenue_vs_plan,Revenue vs plan,Will we hit this year's plan?,Invoiced net revenue (billing date) converted to GBP at the daily rate; compared with the Finance budget converted at budget FX rates.,0,higher,pct,CFO
+landing_forecast,Full-year landing,Will we hit this year's plan?,FY actual to date plus remaining-month budget scaled by the last three months' actual-to-budget ratio.,0,higher,gbp,CFO
+gross_margin_pct,Gross margin %,Where is margin leaking?,(Revenue - standard cost of goods invoiced) / revenue. Standard cost is the version valid on the billing date.,0.33,higher,pct,CFO
+otif,On time in full (OTIF),Are we keeping our promises to customers?,Share of order lines shipped on or before the promised date and in the full ordered quantity. Measured on the promised week.,0.95,higher,pct,COO
+overdue_backlog,Overdue backlog,Are we keeping our promises to customers?,Value of open order lines whose promised date has passed.,0,lower,gbp,COO
+days_of_inventory,Days of inventory,Is cash tied up in stock?,Finished-goods inventory value at standard cost / average daily cost of goods sold over the last 90 days.,45,lower,days,CFO
+excess_stock,Excess stock,Is cash tied up in stock?,Value of finished goods above 60 days of forward cover (based on the last 90 days of shipments).,0,lower,gbp,CFO
+scrap_rate,Scrap rate,Is quality costing us money?,Scrapped quantity / (good + scrapped quantity) on confirmed production orders.,0.03,lower,pct,COO
+cost_of_poor_quality,Cost of poor quality,Is quality costing us money?,Scrapped quantity valued at standard cost (GBP).,0,lower,gbp,COO
+first_pass_yield,First-pass yield,Is quality costing us money?,Inspection lots passed first time / inspection lots.,0.95,higher,pct,COO
+oee,OEE,Is quality costing us money?,Availability x performance x quality on confirmed production orders.,0.75,higher,pct,COO
+supplier_otd,Supplier on-time delivery,Is the supply base putting output at risk?,Purchase-order lines received on or before the due date / lines due.,0.92,higher,pct,CPO

@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --page: #f4f3ef;
+  --surface-1: #fcfcfb;
+  --surface-2: #f0efec;
+  --hairline: #e3e1da;
+  --grid: #ebe9e3;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --ink-3: #7d7c76;
+  --link: #1c5cab;
+  --rail: #15171b;
+  --rail-ink: #e9e7e1;
+  --rail-ink-2: #9a988f;
+  --rail-active: #262a31;
+
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --series-5: #e87ba4;
+  --muted-series: #c4c2bb;
+  --plan: #8a8983;
+
+  --good: #0ca30c;
+  --warning: #fab219;
+  --serious: #ec835a;
+  --critical: #d03b3b;
+  --good-ink: #006300;
+  --critical-ink: #b42828;
+  --neg: #e34948;
+  --pos: #2a78d6;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Source Serif 4", "Iowan Old Style", Georgia, "Times New Roman", serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page: #121212;
+    --surface-1: #1a1a19;
+    --surface-2: #242422;
+    --hairline: #33332f;
+    --grid: #2a2a27;
+    --ink: #f0efec;
+    --ink-2: #c3c2b7;
+    --ink-3: #94938a;
+    --link: #86b6ef;
+    --rail: #0c0d0f;
+    --rail-active: #1f2227;
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --series-4: #c98500;
+    --series-5: #d55181;
+    --muted-series: #4a4a45;
+    --plan: #8e8d85;
+    --good-ink: #4cc24c;
+    --critical-ink: #ef7d7d;
+    --neg: #e66767;
+    --pos: #3987e5;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #121212;
+  --surface-1: #1a1a19;
+  --surface-2: #242422;
+  --hairline: #33332f;
+  --grid: #2a2a27;
+  --ink: #f0efec;
+  --ink-2: #c3c2b7;
+  --ink-3: #94938a;
+  --link: #86b6ef;
+  --rail: #0c0d0f;
+  --rail-active: #1f2227;
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
+  --series-5: #d55181;
+  --muted-series: #4a4a45;
+  --plan: #8e8d85;
+  --good-ink: #4cc24c;
+  --critical-ink: #ef7d7d;
+  --neg: #e66767;
+  --pos: #3987e5;
+}
+
+html,
+body {
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+}
+
+.tnum { font-variant-numeric: tabular-nums; }
+.serif { font-family: var(--font-serif); }
+
+a.link { color: var(--link); text-decoration: none; }
+a.link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 600;
+}
+
+.question {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+table.data { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.data th {
+  text-align: left; font-weight: 600; color: var(--ink-3); font-size: 11px;
+  letter-spacing: 0.04em; text-transform: uppercase; padding: 8px 10px; border-bottom: 1px solid var(--hairline);
+  white-space: nowrap;
+}
+table.data td { padding: 9px 10px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+table.data tr:last-child td { border-bottom: 0; }
+table.data td.num, table.data th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+table.data tbody tr:hover td { background: var(--surface-2); }
+
+.chip {
+  display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--hairline);
+  background: var(--surface-1); border-radius: 999px; padding: 3px 10px; font-size: 12px; color: var(--ink-2);
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; border-radius: 10px; padding: 9px 14px;
+  font-size: 14px; font-weight: 600; border: 1px solid var(--hairline); background: var(--surface-1); color: var(--ink);
+}
+.btn:hover { background: var(--surface-2); }
+.btn-primary { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.btn-primary:hover { opacity: 0.9; background: var(--ink); }
+
+/* Recharts: recessive chrome */
+.recharts-cartesian-axis-tick-value { fill: var(--ink-3); font-size: 11px; }
+.recharts-cartesian-grid line { stroke: var(--grid); }
+.recharts-text.recharts-label { fill: var(--ink-3); font-size: 11px; }
+.recharts-tooltip-cursor { stroke: var(--hairline); }
+
+:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-radius: 4px; }

@@ -1,0 +1,21 @@
+version: 2
+sources:
+  - name: bronze
+    description: Raw extracts loaded by dlt exactly as the source systems sent them.
+    schema: bronze
+    tables:
+      - name: erp_customers
+      - name: erp_materials
+      - name: erp_suppliers
+      - name: erp_cost_standards
+      - name: erp_sales_order_headers
+      - name: erp_sales_order_items
+      - name: erp_deliveries
+      - name: erp_billing
+      - name: erp_purchase_order_items
+      - name: erp_po_receipts
+      - name: erp_stock_movements
+      - name: mes_production_orders
+      - name: qms_inspections
+      - name: fx_daily_rates
+      - name: finance_budget

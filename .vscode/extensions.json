@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "innoverio.vscode-dbt-power-user",
+    "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint"
+  ]
+}

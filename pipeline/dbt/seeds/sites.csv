@@ -1,0 +1,6 @@
+site_id,plant_code,site_name,company_code,entity_name,currency,country,region
+1,UK01,Birmingham,1000,Halden UK Ltd,GBP,GB,UK & Ireland
+2,UK02,Coventry,1000,Halden UK Ltd,GBP,GB,UK & Ireland
+3,DE01,Stuttgart,2000,Halden GmbH,EUR,DE,DACH & EU
+4,DE02,Leipzig,2000,Halden GmbH,EUR,DE,DACH & EU
+5,US01,Detroit,3000,Halden Inc,USD,US,North America

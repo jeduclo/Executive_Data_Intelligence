@@ -1,0 +1,14 @@
+version: 2
+seeds:
+  - name: sites
+    description: Plant master (would come from SAP T001W/T001K in production).
+    columns:
+      - name: site_id
+        data_tests: [unique, not_null]
+  - name: budget_fx
+    description: Finance budget exchange rates (local currency per GBP) by fiscal year.
+  - name: kpi_definitions
+    description: The single governed definition of every KPI shown in the portal and in Power BI.
+    columns:
+      - name: kpi_code
+        data_tests: [unique, not_null]

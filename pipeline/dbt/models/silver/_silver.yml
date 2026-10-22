@@ -1,0 +1,44 @@
+version: 2
+models:
+  - name: slv_customers
+    description: Customer master with duplicate records merged onto a golden customer_id.
+    columns:
+      - name: kunnr
+        data_tests: [unique, not_null]
+      - name: customer_id
+        data_tests: [not_null]
+  - name: slv_sales_orders
+    description: Sales order lines (VBAK + VBAP) with site and golden customer resolved.
+    data_tests:
+      - dbt_utils_unique_combination: {arguments: {columns: [order_id, line_no]}}
+    columns:
+      - name: customer_id
+        data_tests: [not_null]
+      - name: currency
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: ['GBP', 'EUR', 'USD']}}
+      - name: net_value_local
+        data_tests: [not_null]
+  - name: slv_stock_movements
+    description: Material documents, de-duplicated and signed.
+    data_tests:
+      - dbt_utils_unique_combination: {arguments: {columns: [document_id, document_line]}}
+  - name: slv_production_orders
+    columns:
+      - name: production_order_id
+        data_tests: [unique, not_null]
+      - name: start_date
+        data_tests: [not_null]
+  - name: slv_fx_rates
+    data_tests:
+      - dbt_utils_unique_combination: {arguments: {columns: [rate_date, currency]}}
+  - name: slv_budget
+    columns:
+      - name: revenue_budget_local
+        data_tests: [not_null]
+      - name: month_start
+        data_tests: [not_null]
+  - name: slv_purchase_orders
+    data_tests:
+      - dbt_utils_unique_combination: {arguments: {columns: [po_id, po_line]}}

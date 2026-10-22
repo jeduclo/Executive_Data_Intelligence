@@ -1,0 +1,69 @@
+version: 2
+models:
+  - name: dim_site
+    description: Plants and legal entities. RLS key = site_id.
+  - name: dim_customer
+    description: Golden customer records (duplicates merged).
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+  - name: fct_order_line
+    description: >
+      One row per sales order line. Single source for revenue, gross margin, OTIF and backlog.
+      Value columns (unit_price_local, net_value_local, order_value_gbp, open_value_gbp, revenue_gbp,
+      cost_gbp, margin_gbp) are protected by column-level security.
+    data_tests:
+      - dbt_utils_unique_combination: {arguments: {columns: [order_id, line_no]}}
+    columns:
+      - name: site_id
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('dim_site'), field: site_id}}
+      - name: customer_id
+        data_tests:
+          - relationships: {arguments: {to: ref('dim_customer'), field: customer_id}}
+      - name: order_value_gbp
+        description: Order value converted at the order-date FX rate.
+        data_tests: [not_null]
+      - name: cost_gbp
+        description: Standard cost valid on the billing date.
+      - name: status
+        data_tests:
+          - accepted_values: {arguments: {values: ['Open', 'Shipped', 'Invoiced']}}
+  - name: fct_production_order
+    data_tests:
+      - expression_is_true: {arguments: {expression: "scrap_qty >= 0 and good_qty >= 0"}}
+    columns:
+      - name: production_order_id
+        data_tests: [unique, not_null]
+  - name: fct_po_line
+    data_tests:
+      - dbt_utils_unique_combination: {arguments: {columns: [po_id, po_line]}}
+  - name: fct_inventory_position
+    description: Finished-goods stock by site and material at the reporting date, with excess over 60 days cover.
+    data_tests:
+      - dbt_utils_unique_combination: {arguments: {columns: [site_id, material_id]}}
+    columns:
+      - name: std_cost_gbp
+        description: Missing standard costs would understate inventory value.
+        data_tests:
+          - not_null:
+              config: {severity: warn}
+  - name: fct_budget_month
+    data_tests:
+      - dbt_utils_unique_combination: {arguments: {columns: [site_id, month_start]}}
+  - name: mart_site_month
+    description: Every governed KPI by site and month, with budget and targets.
+    data_tests:
+      - dbt_utils_unique_combination: {arguments: {columns: [site_id, month_start]}}
+    columns:
+      - name: revenue_budget_gbp
+        data_tests: [not_null]
+  - name: mart_site_week
+    data_tests:
+      - dbt_utils_unique_combination: {arguments: {columns: [site_id, week_start]}}
+  - name: mart_exceptions
+    description: Threshold breaches ranked by money at stake; drives alerts and the executive brief.
+    columns:
+      - name: exception_id
+        data_tests: [unique]
