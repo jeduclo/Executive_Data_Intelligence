@@ -51,7 +51,7 @@ export default async function LoginPage() {
           <p className="mt-2 text-sm" style={{ color: "var(--ink-2)" }}>
             Switch between roles to see row- and column-level security enforced by PostgreSQL.
           </p>
-          <p className="mt-2 text-sm" style={{ color: "var(--ink-2)" }}>
+          <p className="mt-2 font-semibold text-sm" style={{ color: "var(--ink-2)" }}>
             Use the following password: Halden-2026.
           </p>
           <LoginForm personas={options} needCode={!gate} current={session?.uid} />
